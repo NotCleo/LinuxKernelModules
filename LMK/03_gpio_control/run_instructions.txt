@@ -1,0 +1,40 @@
+To see the linux kernel headers, check this :
+
+ls /lib/modules/$(uname -r)/build
+
+
+These have all the files to build the kernel module.
+
+We made a hello.c and a Makefile,
+
+hello.c holds the src for the hello linux kernel module
+Makefile will build the kernel module
+
+Kernel Headers generally start with linux/.
+
+We have two important events 
+1) module is loaded into the kernel
+2) module is removed from the kernel
+
+We do not have a printf, as there is no STDIO, instead we have kernel log, so we write into the kernel log.
+
+
+This module requires a license to compile, like GPL from GNU.
+
+Refer to my notes for understanding the code written!
+
+we run make cmd after both files are populated.
+
+Both compile and linking make a lot of different files.
+
+we run tmux to open a parallel window, where you run the sudo dmseg -W cmd
+
+In the original window, run the cmd sudo insmod hello.ko to print hello kernel
+
+Repeat this with sudo rmmod hello.ko to print goodbye kernel
+
+Some useful command is lsmod | grep 'filename'
+
+To see the kernel logs, you need to run the sudo dmesg | tail, it shows the log from bootup
+
+We can do the gpio control in two ways either add in like how we did in arm dd by adding device tree but that's a little too complex for me to do, we are doing it in another way, see the code
